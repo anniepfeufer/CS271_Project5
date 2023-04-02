@@ -23,5 +23,7 @@ private:
 	Node* Adj; //dynamic array of pointer to nodes 
 
 public:
-	
+	Graph(vector<K> keys, vector<D> data, vector<vector<K>> edges){
+		
+	}
 }
