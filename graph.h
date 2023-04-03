@@ -33,7 +33,7 @@ public:
 			curr.data=data.at(i);
 			curr.key=keys.at(i);
 			V[i]=curr;
-			Adj[i]
+			Adj[i]=
 		}
 	}
 };
