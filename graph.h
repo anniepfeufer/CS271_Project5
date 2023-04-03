@@ -16,7 +16,6 @@ private:
 	{
 		D data;
 		K key;
-		
 	}
 
 	Node* V; //dynamic array of vertices 
@@ -36,4 +35,5 @@ public:
 			Adj[i]= edges.at(i);
 		}
 	}
+	Node<D,K>* get(K k);
 };
