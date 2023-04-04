@@ -20,7 +20,7 @@ private:
 
 	Node* V; //dynamic array of vertices 
 	int size; //number of verticies in the graph
-	vector<K>* Adj; //dynamic array of pointer to nodes 
+	vector<K>* Adj; //dynamic array of pointer to nodes  
 
 public:
 	Graph(vector<K> keys, vector<D> data, vector<vector<K> > edges){

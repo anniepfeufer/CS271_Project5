@@ -18,11 +18,9 @@ int main(void)
     vector<int> inner1;
     inner1.push_back(1);
     inner1.push_back(2);
-    
     vector<int> inner2;
     inner2.push_back(2);
     inner2.push_back(3);
-
     vector<int> inner3;
     inner3.push_back(3);
     inner3.push_back(1);
@@ -31,7 +29,6 @@ int main(void)
     edges.push_back(inner1);
     edges.push_back(inner2);
     edges.push_back(inner3);
-
-
+    
     Graph<int, int> g=Graph<int, int>(keys, data, edges);
 }
