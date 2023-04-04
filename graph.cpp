@@ -147,26 +147,6 @@ void        Graph<D,K>::bfs     ( K start_key )
     return;
 }
 
-
-//============================================
-// get
-// description: 
-// PARAMETERS:
-// RETURN:
-// pre-conditions:
-// pos-conditions:
-//============================================
-template <typename D, typename K> 
-Graph<D,K>::vertex*     Graph<D,K>::get         ( K key )
-{
-    for ( int i = 0; i < V.size(); i++ )
-    {
-        if (V[i]->key == key)
-            return V[i];
-    }
-    return NULL;
-}
-
 /*
 //============================================
 // reachable

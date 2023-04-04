@@ -38,7 +38,14 @@ public:
 			Graph			(vector<K> keys, vector<D> data, vector<vector<K> > edges );
    		   ~Graph  			( void );
 void 		bfs				( K start_key );
-struct vertex*  get			    ( K key );		
+vertex*  	get			    ( K key ){
+	for ( int i = 0; i < V.size(); i++ )
+	{
+		if (V[i]->key == key)
+			return V[i];
+	}
+	return NULL;
+}		
 //void 		reachable		( vertex* u, vertex* v );
 //void		print_path		( vertex* u, vertex* v );
 //void		print_path_r	( vertex* u, vertex* v );
