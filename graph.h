@@ -47,13 +47,13 @@ vertex*  	get			    ( K key ){
 	return NULL;
 }		
 bool 		reachable		( K u, K v );
-//void		print_path		( K u, K v );
-//void		print_path_r	( vertex* u, vertex* v );
+void		print_path		( K u, K v );
+void		print_path_r	( vertex* u, vertex* v );
 //void		edge_class		( K u, K v );
-//void		bfs_trees		( K start_key );
+void		bfs_tree		( K start_key );
 };
 
 
-//#include "graph.cpp"
+#include "graph.cpp"
 
 #endif

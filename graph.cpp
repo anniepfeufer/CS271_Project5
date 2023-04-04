@@ -1,5 +1,4 @@
 
-#include "graph.h"
 /*
 template <typename D, typename K>
 Node<D,K>* Graph<D,K>::get(K k){
@@ -152,13 +151,13 @@ void        Graph<D,K>::bfs     ( K start_key )
 template <typename D, typename K>
 bool        Graph<D,K>::reachable       ( K u, K v )
 {
-    vertex* n = get(v);
     bfs(u);
-    if ( n->color == 0 )
+    if ( get(v)->color == 0 )
         return false;
     return true;
 }
-/*
+
+
 //============================================
 // print_path
 // description: 
@@ -171,9 +170,7 @@ template <typename D, typename K>
 void        Graph<D,K>::print_path      ( K u, K v )
 {
     bfs(u);
-    get(u);
-    get(v);
-    print_path_r( u, v );
+    print_path_r( get(u), get(v) );
     return;
 }
 
@@ -186,17 +183,19 @@ void        Graph<D,K>::print_path      ( K u, K v )
 // pos-conditions:
 //============================================
 template <typename D, typename K>
-void        Graph<D,K>::print_path_r        ( vertex* u, vertex* v )
+void        Graph<D,K>::print_path_r        ( vertex* s, vertex* v )
 {
-    if ( v->key == u->key )
-        cout << v->key << endl;
+    if ( v->key == s->key )
+        cout << s->key << endl;
     else if ( v->pred == NULL )
         cout << "no path" << endl;
     else
-        print_path_r( u, v );
+    {
+        print_path_r( s, v->pred );
         cout << v->key << endl;
+    }
 }
-
+/*
 //============================================
 // edge_class
 // description: 
@@ -210,9 +209,9 @@ void        Graph<D,K>::edge_class      ( K u, K v )
 {
     return;
 }
-
+*/
 //============================================
-// bfs_trees
+// bfs_tree
 // description: 
 // PARAMETERS:
 // RETURN:
@@ -220,11 +219,35 @@ void        Graph<D,K>::edge_class      ( K u, K v )
 // pos-conditions:
 //============================================
 template <typename D, typename K>
-void        Graph<D,K>::bfs_trees       ( K start_key )
+void        Graph<D,K>::bfs_tree        ( K start_key )
 {
+    bfs(start_key);
+    queue<vertex*> q;
+    q.push(get(start_key));
+    int distance = 0;
+    while ( !q.empty() )
+    {
+        vertex* v = q.front();
+        if ( v->d >= distance )
+        {
+            for ( int i = 0; i < Adj[v->index].size(); i++ )
+                q.push(Adj[v->index][i]);
+        }
+        if ( v->d >= distance )
+        {
+            if ( v->d != distance )
+            {
+                cout << endl << v->key;
+                distance = v->d;
+            }
+            else
+                cout << v->key;
+        }
+        q.pop();
+    }
     return;
 }
-*/
+
 
 
 
