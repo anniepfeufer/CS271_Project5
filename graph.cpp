@@ -8,5 +8,5 @@ Node<D,K>* Graph<D,K>::get(K k){
             return V[i];
         }
     }
-    
+    return nullptr;
 }
