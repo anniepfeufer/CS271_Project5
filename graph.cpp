@@ -86,7 +86,7 @@ template <typename D, typename K>
     return;
 }
 
-/*
+
 //============================================
 // BFS
 // description: 
@@ -127,10 +127,11 @@ void        Graph<D,K>::bfs     ( K start_key )
                 Adj[u->index][v]->color = 1;
                 Adj[u->index][v]->d = u->d + 1;
                 Adj[u->index][v]->pred = u;
-                Q.push(v);
+                Q.push(Adj[u->index][v]);
             }
         }
-
+    }
+    /*
     for ( int i = 0; i < V.size(); i++)
     {
         cout << " i = " << i << endl;
@@ -139,13 +140,13 @@ void        Graph<D,K>::bfs     ( K start_key )
         cout << "V[i] index = " << V[i]->index << endl;
         cout << "V[i] color = " << V[i]->color << endl;
         cout << "V[i] d = " << V[i]->d << endl;
-        cout << "V[i] pred = " << V[i]->pred->data << endl;
+        if ( V[i]->pred != NULL)
+            cout << "V[i] pred = " << (V[i]->pred)->key << endl;
     }
-
-    }
+    */
     return;
 }
-*/
+
 
 //============================================
 // get

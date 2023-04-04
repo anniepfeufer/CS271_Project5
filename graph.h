@@ -37,7 +37,7 @@ private:
 public:
 			Graph			(vector<K> keys, vector<D> data, vector<vector<K> > edges );
    		   ~Graph  			( void );
-//void 		bfs				( K start_key );
+void 		bfs				( K start_key );
 struct vertex*  get			    ( K key );		
 //void 		reachable		( vertex* u, vertex* v );
 //void		print_path		( vertex* u, vertex* v );
