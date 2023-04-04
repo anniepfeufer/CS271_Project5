@@ -1,6 +1,6 @@
-/*
-#include "graph.h"
 
+#include "graph.h"
+/*
 template <typename D, typename K>
 Node<D,K>* Graph<D,K>::get(K k){
     for (int i=0; i<size; i++){
@@ -29,9 +29,9 @@ Node<D,K>* Graph<D,K>::get(K k){
 template <typename D, typename K>
     Graph<D,K>::Graph       (vector<K> keys, vector<D> data, vector<vector<K> > edges )
 {
-    V = {};
+    //V = {};
     //V.resize(keys.size());            //resize to keys 
-    for ( int i = 0; i < keys.size(); i++ )
+    for ( int i = 0; i < keys.size(); i++ )//can we combine these into one loop for time? all3 go through same size vectors
     {
         vertex* v_node = new vertex;
         v_node->data = data[i];
@@ -145,7 +145,7 @@ void        Graph<D,K>::bfs     ( K start_key )
     }
     return;
 }
-
+*/
 
 //============================================
 // get
@@ -156,7 +156,7 @@ void        Graph<D,K>::bfs     ( K start_key )
 // pos-conditions:
 //============================================
 template <typename D, typename K> 
-vertex*     Graph<D,K>::get         ( K key )
+Graph<D,K>::vertex*     Graph<D,K>::get         ( K key )
 {
     for ( int i = 0; i < V.size(); i++ )
     {
@@ -166,6 +166,7 @@ vertex*     Graph<D,K>::get         ( K key )
     return NULL;
 }
 
+/*
 //============================================
 // reachable
 // description: 

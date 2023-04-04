@@ -29,7 +29,7 @@ private:
 		vertex* pred;
 	};
 
-	vector<vertex*> V; //vector of vertices 
+	vector<vertex*> V; //vector of pointers to vertices 
 	vector<vector<vertex*> > Adj; //dynamic array of pointer to nodes 
 
 
@@ -38,7 +38,7 @@ public:
 			Graph			(vector<K> keys, vector<D> data, vector<vector<K> > edges );
    		   ~Graph  			( void );
 //void 		bfs				( K start_key );
-//vertex*	get			( K key );		
+struct vertex*  get			    ( K key );		
 //void 		reachable		( vertex* u, vertex* v );
 //void		print_path		( vertex* u, vertex* v );
 //void		print_path_r	( vertex* u, vertex* v );
@@ -47,6 +47,6 @@ public:
 };
 
 
-#include "graph.cpp"
+//#include "graph.cpp"
 
 #endif
