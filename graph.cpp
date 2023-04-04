@@ -98,13 +98,7 @@ template <typename D, typename K>
 template <typename D, typename K>
 void        Graph<D,K>::bfs     ( K start_key )
 {
-    vertex* s;
-    for ( int i = 0; i < V.size(); i++ )
-    {
-        if (V[i]->key == start_key)
-            s = V[i];
-    }
-
+    vertex* s = get(start_key);
     queue<vertex*> Q;
     for ( int u = 0; u < V.size(); u++ )
     {
@@ -147,7 +141,6 @@ void        Graph<D,K>::bfs     ( K start_key )
     return;
 }
 
-/*
 //============================================
 // reachable
 // description: 
@@ -157,18 +150,15 @@ void        Graph<D,K>::bfs     ( K start_key )
 // pos-conditions:
 //============================================
 template <typename D, typename K>
-void        Graph<D,K>::reachable       ( vertex* u, vertex* v )
+bool        Graph<D,K>::reachable       ( K u, K v )
 {
+    vertex* n = get(v);
     bfs(u);
-    if ( v.color == 0 )
-    {
-        cout << v << " is unreachable from " << u << "." << endl;
-        return;
-    }
-    cout << v << " is reachable from " << u << "." << endl;
-    return;
+    if ( n->color == 0 )
+        return false;
+    return true;
 }
-
+/*
 //============================================
 // print_path
 // description: 
@@ -178,9 +168,11 @@ void        Graph<D,K>::reachable       ( vertex* u, vertex* v )
 // pos-conditions:
 //============================================
 template <typename D, typename K>
-void        Graph<D,K>::print_path      ( vertex* u, vertex* v )
+void        Graph<D,K>::print_path      ( K u, K v )
 {
     bfs(u);
+    get(u);
+    get(v);
     print_path_r( u, v );
     return;
 }
@@ -214,7 +206,7 @@ void        Graph<D,K>::print_path_r        ( vertex* u, vertex* v )
 // pos-conditions:
 //============================================
 template <typename D, typename K>
-void        Graph<D,K>::edge_class      ( vertex* u, vertex* v )
+void        Graph<D,K>::edge_class      ( K u, K v )
 {
     return;
 }

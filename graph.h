@@ -46,10 +46,10 @@ vertex*  	get			    ( K key ){
 	}
 	return NULL;
 }		
-//void 		reachable		( vertex* u, vertex* v );
-//void		print_path		( vertex* u, vertex* v );
+bool 		reachable		( K u, K v );
+//void		print_path		( K u, K v );
 //void		print_path_r	( vertex* u, vertex* v );
-//void		edge_class		( vertex* u, vertex* v );
+//void		edge_class		( K u, K v );
 //void		bfs_trees		( K start_key );
 };
 
