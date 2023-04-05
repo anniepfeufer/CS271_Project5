@@ -221,29 +221,37 @@ void        Graph<D,K>::edge_class      ( K u, K v )
 template <typename D, typename K>
 void        Graph<D,K>::bfs_tree        ( K start_key )
 {
-    bfs(start_key);
-    queue<vertex*> q;
-    q.push(get(start_key));
-    int distance = 0;
-    while ( !q.empty() )
+    vertex* s = get(start_key);
+    queue<vertex*> Q;
+    for ( int u = 0; u < V.size(); u++ )
     {
-        vertex* v = q.front();
-        if ( v->d >= distance )
+        V[u]->color = 0;
+        V[u]->d = -8;
+        V[u]->pred = NULL;
+    }
+    s->color = 1;
+    s->d = 0;
+    s->pred = NULL;
+    Q.push(s);
+    cout << s->key << endl;
+    while ( !Q.empty() )
+    {
+        vertex* u = Q.front();
+        Q.pop();
+        for ( int v = 0; v < Adj[u->index].size(); v++ )
         {
-            for ( int i = 0; i < Adj[v->index].size(); i++ )
-                q.push(Adj[v->index][i]);
-        }
-        if ( v->d >= distance )
-        {
-            if ( v->d != distance )
+            if ( Adj[u->index][v]->color == 0 )
             {
-                cout << endl << v->key;
-                distance = v->d;
+                Adj[u->index][v]->color = 1;
+                Adj[u->index][v]->d = u->d + 1;
+                Adj[u->index][v]->pred = u;
+                cout << Adj[u->index][v]->key;
+                Q.push(Adj[u->index][v]);
             }
-            else
-                cout << v->key;
+
         }
-        q.pop();
+        if ( !Q.empty() && Q.front()->d == u->d+1)
+            cout << endl;
     }
     return;
 }
