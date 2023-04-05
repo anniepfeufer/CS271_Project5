@@ -256,6 +256,65 @@ void        Graph<D,K>::bfs_tree        ( K start_key )
     return;
 }
 
+//============================================
+// dfs
+// description: 
+// PARAMETERS:
+// RETURN:
+// pre-conditions:
+// pos-conditions:
+//============================================
+template <typename D, typename K>
+void        Graph<D,K>::dfs         ( void )
+{
+    for ( int u = 0; u < V.size(); u++ )
+    {
+        V[u]->color = 0;        // 0 = white
+        V[u]->pred = NULL;
+    }
+    int time = 0;
+    for ( int u = 0; u < V.size(); u++ )
+    {
+        if ( V[u]->color == 0 )
+            dfs_visit( V[u], time );
+    }
+
+    for ( int i = 0; i < V.size(); i++)
+    {
+        cout << "V[i] key = " << V[i]->key << endl;
+        if ( V[i]->pred != NULL )
+            cout << "V[i] pred = " << (V[i]->pred)->key << endl;
+        cout << "V[i] d = " << V[i]->d << endl;
+        cout << "V[i] f = " << V[i]->f << endl;
+
+    }
+}
+
+//============================================
+// dfs_visit
+// description: 
+// PARAMETERS:
+// RETURN:
+// pre-conditions:
+// pos-conditions:
+//============================================
+template <typename D, typename K>
+void        Graph<D,K>::dfs_visit           ( vertex* u, int time )
+{
+    time = time + 1;
+    u->d = time;
+    u->color = 1;
+    for ( int v = 0; v < Adj[u->index].size(); v++ )
+    {
+        if ( Adj[u->index][v]->color == 0 )
+        {
+            Adj[u->index][v]->pred = u;
+            dfs_visit( Adj[u->index][v], u->d );
+        }
+    }
+    time = u->d + time;
+    u->f = time;
+}
 
 
 
