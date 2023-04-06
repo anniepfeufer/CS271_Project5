@@ -195,7 +195,7 @@ void        Graph<D,K>::print_path_r        ( vertex* s, vertex* v )
         cout << v->key << endl;
     }
 }
-/*
+
 //============================================
 // edge_class
 // description: 
@@ -205,11 +205,17 @@ void        Graph<D,K>::print_path_r        ( vertex* s, vertex* v )
 // pos-conditions:
 //============================================
 template <typename D, typename K>
-void        Graph<D,K>::edge_class      ( K u, K v )
+string        Graph<D,K>::edge_class      ( K u, K v )
 {
+    dfs();
+    vertex* a=get(u);
+    vertex* b=get(v);
+    if (Adj[u->index][v]!=NULL){
+
+    }
     return;
 }
-*/
+
 //============================================
 // bfs_tree
 // description: 
@@ -276,7 +282,7 @@ void        Graph<D,K>::dfs         ( void )
     for ( int u = 0; u < V.size(); u++ )
     {
         if ( V[u]->color == 0 )
-            dfs_visit( V[u], time );
+            time=dfs_visit( V[u], time );
     }
 
     for ( int i = 0; i < V.size(); i++)
@@ -299,7 +305,7 @@ void        Graph<D,K>::dfs         ( void )
 // pos-conditions:
 //============================================
 template <typename D, typename K>
-void        Graph<D,K>::dfs_visit           ( vertex* u, int time )
+int        Graph<D,K>::dfs_visit           ( vertex* u, int time )
 {
     time = time + 1;
     u->d = time;
@@ -309,11 +315,12 @@ void        Graph<D,K>::dfs_visit           ( vertex* u, int time )
         if ( Adj[u->index][v]->color == 0 )
         {
             Adj[u->index][v]->pred = u;
-            dfs_visit( Adj[u->index][v], u->d );
+            time=dfs_visit( Adj[u->index][v], u->d );
         }
     }
-    time = u->d + time;
+    time = time + 1;
     u->f = time;
+    return time;
 }
 
 

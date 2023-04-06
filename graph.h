@@ -26,6 +26,7 @@ private:
 		int index;
 		int color;
 		int d;
+		int f;
 		vertex* pred;
 	};
 
@@ -49,10 +50,10 @@ vertex*  	get			    ( K key ){
 bool 		reachable		( K u, K v );
 void		print_path		( K u, K v );
 void		print_path_r	( vertex* u, vertex* v );
-//void		edge_class		( K u, K v );
+string		edge_class		( K u, K v );
 void		bfs_tree		( K start_key );
 void		dfs				( void );
-void		dfs_visit		( vertex* u, int time );
+int		dfs_visit		( vertex* u, int time );
 };
 
 
