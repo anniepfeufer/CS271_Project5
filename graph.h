@@ -53,7 +53,7 @@ void		print_path_r	( vertex* u, vertex* v );
 string		edge_class		( K u, K v );
 void		bfs_tree		( K start_key );
 void		dfs				( void );
-int		dfs_visit		( vertex* u, int time );
+int 		dfs_visit		( vertex* u, int time );
 };
 
 

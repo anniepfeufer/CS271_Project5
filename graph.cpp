@@ -212,9 +212,17 @@ string        Graph<D,K>::edge_class      ( K u, K v )
     vertex* a=get(u);
     vertex* b=get(v);
     if (Adj[u->index][v]!=NULL){
-
+        //not sure if this is right way, want to check that there IS an existing edge
+        if (b->pred=a)
+            return "tree edge";
+        else if ( (a->d > b->d) && (b->f > a->f) )
+            return "forward edge";
+        else if ( (a->d < b->d) && (b->f < a->f) )    
+            return "back edge";
+        else 
+            return "cross edge"
     }
-    return;
+    return "no edge";
 }
 
 //============================================
@@ -318,7 +326,7 @@ int        Graph<D,K>::dfs_visit           ( vertex* u, int time )
         if ( Adj[u->index][v]->color == 0 )
         {
             Adj[u->index][v]->pred = u;
-            time=dfs_visit( Adj[u->index][v], u->d );
+            time=dfs_visit( Adj[u->index][v], time );
         }
     }
     time = time + 1;
