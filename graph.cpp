@@ -192,7 +192,7 @@ void        Graph<D,K>::print_path_r        ( vertex* s, vertex* v )
     else
     {
         print_path_r( s, v->pred );
-        cout << v->key << endl;
+        ccout << "->" << v->key;
     }
 }
 /*
