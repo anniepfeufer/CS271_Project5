@@ -152,9 +152,10 @@ template <typename D, typename K>
 bool        Graph<D,K>::reachable       ( K u, K v )
 {
     bfs(u);
-    if ( get(v)->color == 0 )
-        return false;
-    return true;
+    vertex* ver = get(v);
+    if ( ver != NULL && ver->color != 0 )
+        return true;
+    return false;
 }
 
 
@@ -192,7 +193,7 @@ void        Graph<D,K>::print_path_r        ( vertex* s, vertex* v )
     else
     {
         print_path_r( s, v->pred );
-        ccout << "->" << v->key;
+        ccout << " -> " << v->key;
     }
 }
 /*
@@ -245,6 +246,8 @@ void        Graph<D,K>::bfs_tree        ( K start_key )
                 Adj[u->index][v]->color = 1;
                 Adj[u->index][v]->d = u->d + 1;
                 Adj[u->index][v]->pred = u;
+                if ( v != 0 )
+                    cout << " ";
                 cout << Adj[u->index][v]->key;
                 Q.push(Adj[u->index][v]);
             }
