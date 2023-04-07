@@ -34,6 +34,55 @@ Graph<int, int>* generate_graph(){
     return g;
 }
 
+Graph<int, int>* generate_graph2(){
+    vector<int> keys;
+    keys.push_back(1);
+    keys.push_back(2);
+    keys.push_back(3);
+    keys.push_back(4);
+    keys.push_back(5);
+    keys.push_back(6);
+
+    vector<int> data;
+    data.push_back(6);
+    data.push_back(5);
+    data.push_back(4);
+    data.push_back(3);
+    data.push_back(2);
+    data.push_back(1);
+
+    vector<int> inner1;
+    inner1.push_back(2);
+    inner1.push_back(4);
+
+    vector<int> inner2;
+    inner2.push_back(5);
+
+    vector<int> inner3;
+    inner3.push_back(5);
+    inner3.push_back(6);
+
+    vector<int> inner4;
+    inner4.push_back(2);
+
+    vector<int> inner5;
+    inner5.push_back(4);
+
+    vector<int> inner6;
+    inner6.push_back(6);
+
+    vector<vector<int> > edges;
+    edges.push_back(inner1);
+    edges.push_back(inner2);
+    edges.push_back(inner3);
+    edges.push_back(inner4);
+    edges.push_back(inner5);
+    edges.push_back(inner6);
+    
+    Graph<int, int>* g= new Graph<int, int>(keys, data, edges);
+    return g;
+}
+
 void test_get(Graph<int,int>* g) {
     if (g->get(1)->data != 4){
         cout<<"incorrect data found from get"<<endl;
@@ -56,6 +105,20 @@ void test_reachable(Graph<int, int>* g) {
     }
     if (g->reachable(1,4)){
         cout<<"misrecognized nonexistant vertex as reachable"<<endl;
+    }
+    //look for unreachable vertex see if found reachabel
+    return;
+}
+
+void test_reachable2(Graph<int, int>* g2) {
+    if (!(g2->reachable(1,2))){
+        cout<<"failed to recognize reachable vertex"<<endl;
+    }
+    if (!(g2->reachable(3,2))){
+        cout<<"failed to recognize reachable vertex"<<endl;
+    }
+    if ((g2->reachable(2,3))){
+        cout<<"misidentified unreachable vertex as reachable"<<endl;
     }
     return;
 }
@@ -105,6 +168,23 @@ void test_edge_class(Graph<int,int>* g){
     if(g->edge_class(2,4)!="no edge"){
         cout<<g->edge_class(1,2)<< " was given instead of no edge"<<endl;
     }
+    //need to check foreward, backward, and cross edges
+    return;
+}
+
+void test_edge_class2(Graph<int,int>* g2){
+    if(g2->edge_class(1,2)!="tree edge"){
+        cout<<g2->edge_class(1,2)<< " was given instead of tree edge"<<endl;
+    }
+    if(g2->edge_class(1,4)!="forward edge"){
+        cout<<g2->edge_class(1,2)<< " was given instead of forward edge"<<endl;
+    }
+    if(g2->edge_class(4,2)!="back edge"){
+        cout<<g2->edge_class(1,2)<< " was given instead of back edge"<<endl;
+    }
+    if(g2->edge_class(3,5)!="cross edge"){
+        cout<<g2->edge_class(1,2)<< " was given instead of cross edge"<<endl;
+    }
     return;
 }
 
@@ -119,12 +199,16 @@ void test_bfs_tree(Graph<int,int>* g){
 
 int main(){
     Graph<int, int>* g=generate_graph();
+    Graph<int, int>* g2=generate_graph2();
     test_get(g); cout << "Testing get" << endl;
-    test_reachable(g); cout<<"Testing reachable"<<endl;
+    test_reachable(g); test_reachable2(g2); cout<<"Testing reachable"<<endl;
+    //had to make two reachable tests for different graphs becuase one was more complex
     test_bfs(g); cout<<"Testing bfs"<<endl;
     test_print_path(g); cout<<"Testing print path"<<endl;
-    test_edge_class(g); cout<<"Testing edge class"<<endl;
+    test_edge_class(g); test_edge_class2(g2); cout<<"Testing edge class"<<endl;
+    //same thing with edge class
     test_bfs_tree(g); cout<<"Testing bfs tree"<<endl;
     delete g;
+    delete g2;
     return 0;
 }
