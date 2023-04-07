@@ -261,17 +261,15 @@ void        Graph<D,K>::bfs_tree        ( K start_key )
                 Adj[u->index][v]->color = 1;
                 Adj[u->index][v]->d = u->d + 1;
                 Adj[u->index][v]->pred = u;
-                if ( v != 0 )
+                if ( Q.back()->d == Adj[u->index][v]->d )
                     cout << " ";
                 cout << Adj[u->index][v]->key;
                 Q.push(Adj[u->index][v]);
             }
-
         }
-        if ( !Q.empty() && Q.front()->d == u->d+1)
+        if ( Q.size() > 1 && Q.front()->d == u->d+1 )
             cout << endl;
     }
-    return;
 }
 
 //============================================
