@@ -34,9 +34,21 @@ Graph<int, int>* generate_graph(){
     return g;
 }
 
+void test_get(Graph<int,int>* g) {
+    if (g->get(1)->data != 4){
+        cout<<"incorrect data found from get"<<endl;
+    }
+   if (g->get(9) != nullptr) {
+        cout<< "incorrect result, found non existent vertex"<<endl;
+    }
+    if (g->get(1)->key != 1){
+        cout<<"incorrect data found from get"<<endl;
+    }
+}
 
 int main(){
     Graph<int, int>* g=generate_graph();
+    test_get(g); cout << "Testing get" << endl;
     delete g;
     return 0;
 }
