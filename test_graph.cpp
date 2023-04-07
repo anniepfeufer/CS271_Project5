@@ -46,9 +46,52 @@ void test_get(Graph<int,int>* g) {
     }
 }
 
+void test_reachable(Graph<int, int>* g) {
+    if (!(g->reachable(1,2))){
+        cout<<"failed to recognize reachable vertex"<<endl;
+    }
+    if (!(g->reachable(1,1))){
+        cout<<"failed to recognize reachable vertex"<<endl;
+    }
+    if (g->reachable(1,4)){
+        cout<<"misrecognized nonexistant vertex as reachable"<<endl;
+    }
+}
+
+void test_bfs(Graph<int,int>* g){
+    g->bfs(1);
+    if (g->get(1)->pred != nullptr){
+        cout<<"bfs source incorrectly has a predecessor"<<endl;
+    }
+    if (g->get(2)->pred != g->get(1)){
+        cout<<"bfs has incorrect predecessor"<<endl;
+    }
+    if (g->get(3)->pred == g->get(1)){
+        cout<<"bfs has incorrect predecessor"<<endl;
+    }
+
+    g->bfs(2);
+    if (g->get(2)->pred != nullptr){
+        cout<<"bfs source incorrectly has a predecessor"<<endl;
+    }
+    if (g->get(1)->pred != g->get(3)){
+        cout<<"bfs has incorrect predecessor"<<endl;
+    }
+    if (g->get(3)->pred == g->get(1)){
+        cout<<"bfs has incorrect predecessor"<<endl;
+    }
+}
+
+void test_print_path(Graph<int,int>* g){
+    
+}
+
 int main(){
     Graph<int, int>* g=generate_graph();
     test_get(g); cout << "Testing get" << endl;
+    test_reachable(g); cout<<"Testing reachable"<<endl;
+    test_bfs(g); cout<<"Testing bfs"<<endl;
+    test_print_path(g); cout<<"Testing print path"<<endl;
     delete g;
     return 0;
 }
