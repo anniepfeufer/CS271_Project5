@@ -260,6 +260,7 @@ void        Graph<D,K>::dfs         ( void )
             time=dfs_visit( V[u], time );
     }
 
+    /*
     for ( int i = 0; i < V.size(); i++)
     {
         cout << "V[i] key = " << V[i]->key << endl;
@@ -269,6 +270,7 @@ void        Graph<D,K>::dfs         ( void )
         cout << "V[i] f = " << V[i]->f << endl;
 
     }
+    */
 }
 
 //============================================

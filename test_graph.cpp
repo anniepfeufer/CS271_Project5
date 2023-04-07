@@ -95,12 +95,36 @@ void test_print_path(Graph<int,int>* g){
     return;
 }
 
+void test_edge_class(Graph<int,int>* g){
+    if(g->edge_class(1,2)!="tree edge"){
+        cout<<g->edge_class(1,2)<< " was given instead of tree edge"<<endl;
+    }
+    if(g->edge_class(1,3)!="no edge"){
+        cout<<g->edge_class(1,2)<< " was given instead of no edge"<<endl;
+    }
+    if(g->edge_class(2,4)!="no edge"){
+        cout<<g->edge_class(1,2)<< " was given instead of no edge"<<endl;
+    }
+    return;
+}
+
+void test_bfs_tree(Graph<int,int>* g){
+    g->bfs_tree(1);
+    cout<<"should be 1, 2, 3"<<endl;
+    g->bfs_tree(2);
+    cout<<"should be 2, 3, 1"<<endl;
+    g->bfs_tree(3);
+    cout<<"should be 3, 1, 2"<<endl;
+}
+
 int main(){
     Graph<int, int>* g=generate_graph();
     test_get(g); cout << "Testing get" << endl;
     test_reachable(g); cout<<"Testing reachable"<<endl;
     test_bfs(g); cout<<"Testing bfs"<<endl;
     test_print_path(g); cout<<"Testing print path"<<endl;
+    test_edge_class(g); cout<<"Testing edge class"<<endl;
+    test_bfs_tree(g); cout<<"Testing bfs tree"<<endl;
     delete g;
     return 0;
 }
