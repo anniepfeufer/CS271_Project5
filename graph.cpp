@@ -185,6 +185,8 @@ string        Graph<D,K>::edge_class      ( K u, K v )
                 return "forward edge";
             else if ( (a->d > b->d) && (b->f > a->f) )    
                 return "back edge";
+            else if (a == b)
+                return "back edge";
             else 
                 return "cross edge";
         }

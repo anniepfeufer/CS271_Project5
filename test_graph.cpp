@@ -177,13 +177,16 @@ void test_edge_class2(Graph<int,int>* g2){
         cout<<g2->edge_class(1,2)<< " was given instead of tree edge"<<endl;
     }
     if(g2->edge_class(1,4)!="forward edge"){
-        cout<<g2->edge_class(1,2)<< " was given instead of forward edge"<<endl;
+        cout<<g2->edge_class(1,4)<< " was given instead of forward edge"<<endl;
     }
     if(g2->edge_class(4,2)!="back edge"){
-        cout<<g2->edge_class(1,2)<< " was given instead of back edge"<<endl;
+        cout<<g2->edge_class(4,2)<< " was given instead of back edge"<<endl;
     }
     if(g2->edge_class(3,5)!="cross edge"){
-        cout<<g2->edge_class(1,2)<< " was given instead of cross edge"<<endl;
+        cout<<g2->edge_class(3,5)<< " was given instead of cross edge"<<endl;
+    }
+    if(g2->edge_class(6,6)!="back edge"){
+        cout<<g2->edge_class(6,6)<< " was given instead of back edge"<<endl;
     }
     return;
 }
