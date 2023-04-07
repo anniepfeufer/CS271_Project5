@@ -15,7 +15,7 @@ Node<D,K>* Graph<D,K>::get(K k){
 // graph.cpp
 //==================================
 
-
+#include "graph.h"
 
 //============================================
 // constructor
@@ -45,7 +45,7 @@ template <typename D, typename K>
     //Adj.resize(keys.size());//resize to keys
     for ( int i = 0; i < edges.size(); i++ )
     {
-        vector<vertex*> curr_adj = {};
+        vector<vertex*> curr_adj;
         for ( int j = 0; j < edges[i].size(); j++ )
         {
             for ( int n = 0; n < keys.size(); n++ )
@@ -193,7 +193,7 @@ void        Graph<D,K>::print_path_r        ( vertex* s, vertex* v )
     else
     {
         print_path_r( s, v->pred );
-        ccout << " -> " << v->key;
+        cout << " -> " << v->key;
     }
 }
 
@@ -213,14 +213,14 @@ string        Graph<D,K>::edge_class      ( K u, K v )
     vertex* b=get(v);
     if (Adj[u->index][v]!=NULL){
         //not sure if this is right way, want to check that there IS an existing edge
-        if (b->pred=a)
+        if (b->pred==a)
             return "tree edge";
         else if ( (a->d > b->d) && (b->f > a->f) )
             return "forward edge";
         else if ( (a->d < b->d) && (b->f < a->f) )    
             return "back edge";
         else 
-            return "cross edge"
+            return "cross edge";
     }
     return "no edge";
 }

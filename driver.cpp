@@ -1,6 +1,7 @@
 #include <iostream>
-#include "graph.h"
+//#include "graph.h"
 #include "vector"
+#include "graph.cpp"
 using namespace std;
 
 int main(void)
