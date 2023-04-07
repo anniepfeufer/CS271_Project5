@@ -1,16 +1,4 @@
 
-/*
-template <typename D, typename K>
-Node<D,K>* Graph<D,K>::get(K k){
-    for (int i=0; i<size; i++){
-        if (V[i].key==k){
-            return V[i];
-        }
-    }
-    return nullptr;
-}
-*/
-
 //==================================
 // graph.cpp
 //==================================
@@ -28,21 +16,20 @@ Node<D,K>* Graph<D,K>::get(K k){
 template <typename D, typename K>
     Graph<D,K>::Graph       (vector<K> keys, vector<D> data, vector<vector<K> > edges )
 {
-    //V = {};
-    //V.resize(keys.size());            //resize to keys 
-    for ( int i = 0; i < keys.size(); i++ )//can we combine these into one loop for time? all3 go through same size vectors
+    //V.resize(keys.size());                //resize to keys 
+    for ( int i = 0; i < keys.size(); i++ ) 
     {
         vertex* v_node = new vertex;
         v_node->data = data[i];
         v_node->key = keys[i];
         v_node->index = i;
-        v_node->color = 0;
+        v_node->color = 0;      // white == 0 
         v_node->d = -8;
         v_node->pred = NULL;
         V.push_back(v_node);
     }
 
-    //Adj.resize(keys.size());//resize to keys
+    //Adj.resize(keys.size());              //resize to keys
     for ( int i = 0; i < edges.size(); i++ )
     {
         vector<vertex*> curr_adj;
@@ -58,33 +45,21 @@ template <typename D, typename K>
         }
         Adj.push_back(curr_adj);
     }   
-
-    for ( int i = 0; i < keys.size(); i++)
-    {
-        cout << " i = " << i << endl;
-        cout << "V[i] key = " << V[i]->key << endl;
-        cout << "V[i] data = " << V[i]->data << endl;
-        cout << "V[i] index = " << V[i]->index << endl;
-        for ( int j = 0; j < edges[i].size(); j++ )
-            cout << "edges at  i = " <<  Adj[i][j]->key << endl;
-    }
-
 }
 
 //============================================
 // destructor
-// description: 
-// PARAMETERS:
-// RETURN:
-// pre-conditions:
-// pos-conditions:
+// description: deletes graph
+// PARAMETERS: none
+// RETURN: none 
+// pre-conditions: exisiting graph object
+// pos-conditions: deallocation of memory 
 //============================================
 template <typename D, typename K>
         Graph<D,K>::~Graph      ( void )
 {
     return;
 }
-
 
 //============================================
 // BFS
@@ -124,19 +99,6 @@ void        Graph<D,K>::bfs     ( K start_key )
             }
         }
     }
-    /*
-    for ( int i = 0; i < V.size(); i++)
-    {
-        cout << " i = " << i << endl;
-        cout << "V[i] key = " << V[i]->key << endl;
-        cout << "V[i] data = " << V[i]->data << endl;
-        cout << "V[i] index = " << V[i]->index << endl;
-        cout << "V[i] color = " << V[i]->color << endl;
-        cout << "V[i] d = " << V[i]->d << endl;
-        if ( V[i]->pred != NULL)
-            cout << "V[i] pred = " << (V[i]->pred)->key << endl;
-    }
-    */
     return;
 }
 
@@ -157,7 +119,6 @@ bool        Graph<D,K>::reachable       ( K u, K v )
         return true;
     return false;
 }
-
 
 //============================================
 // print_path
