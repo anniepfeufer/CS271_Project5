@@ -132,6 +132,10 @@ template <typename D, typename K>
 void        Graph<D,K>::print_path      ( K u, K v )
 {
     bfs(u);
+    if(get(u)==nullptr || get(v)==nullptr){
+        cout<<"no path"<<endl;
+        return;
+    }
     print_path_r( get(u), get(v) );
     return;
 }

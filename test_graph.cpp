@@ -44,6 +44,7 @@ void test_get(Graph<int,int>* g) {
     if (g->get(1)->key != 1){
         cout<<"incorrect data found from get"<<endl;
     }
+    return;
 }
 
 void test_reachable(Graph<int, int>* g) {
@@ -56,6 +57,7 @@ void test_reachable(Graph<int, int>* g) {
     if (g->reachable(1,4)){
         cout<<"misrecognized nonexistant vertex as reachable"<<endl;
     }
+    return;
 }
 
 void test_bfs(Graph<int,int>* g){
@@ -80,10 +82,17 @@ void test_bfs(Graph<int,int>* g){
     if (g->get(3)->pred == g->get(1)){
         cout<<"bfs has incorrect predecessor"<<endl;
     }
+    return;
 }
 
 void test_print_path(Graph<int,int>* g){
-    
+    g->print_path(1,3);
+    cout<<"should be 1,2,3"<<endl;
+    g->print_path(2,1);
+    cout<<"should be 2,3,1"<<endl;
+    g->print_path(2,5);
+    cout<<"should be no path"<<endl;
+    return;
 }
 
 int main(){
