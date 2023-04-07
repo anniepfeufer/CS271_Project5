@@ -8,10 +8,10 @@
 //============================================
 // constructor
 // description: creates V and Adj from keys, data, and edges
-// PARAMETERS: vector of keys, vector of data, vector of vector edges
-// RETURN: none
-// pre-conditions: keys and data must be in a vector and edges must be in a vector of vectors
-// pos-conditions: a vector V and vector of vectors Adj that holds verticies and their adjacency lists in corresponding indices
+// PARAMETERS: vectors for keys, data, and edges
+// RETURN: no return, but creates a graph
+// pre-conditions: keys, data, and edges are all the same length
+// pos-conditions: creates a graph
 //============================================
 template <typename D, typename K>
     Graph<D,K>::Graph       (vector<K> keys, vector<D> data, vector<vector<K> > edges )
@@ -62,12 +62,12 @@ template <typename D, typename K>
 }
 
 //============================================
-// bfs
-// description: 
-// PARAMETERS:
-// RETURN:
-// pre-conditions:
-// pos-conditions:
+// BFS
+// description: searches all verticies from start at distance 1, then 2, 3 so on
+// PARAMETERS: source key
+// RETURN: void
+// pre-conditions: none
+// pos-conditions: implicitly builds a tree from predecessors of verticies
 //============================================
 template <typename D, typename K>
 void        Graph<D,K>::bfs     ( K start_key )
@@ -104,11 +104,11 @@ void        Graph<D,K>::bfs     ( K start_key )
 
 //============================================
 // reachable
-// description: 
-// PARAMETERS:
-// RETURN:
-// pre-conditions:
-// pos-conditions:
+// description: determines whether one vertex is reachable from another
+// PARAMETERS: keys u and v
+// RETURN: bool-if v is reachable from u
+// pre-conditions: bfs
+// pos-conditions: none
 //============================================
 template <typename D, typename K>
 bool        Graph<D,K>::reachable       ( K u, K v )
@@ -122,11 +122,11 @@ bool        Graph<D,K>::reachable       ( K u, K v )
 
 //============================================
 // print_path
-// description: 
-// PARAMETERS:
-// RETURN:
-// pre-conditions:
-// pos-conditions:
+// description: prints a simple path from u to v
+// PARAMETERS: keys u and v
+// RETURN: void
+// pre-conditions: bfs
+// pos-conditions: prints the path in the terminal
 //============================================
 template <typename D, typename K>
 void        Graph<D,K>::print_path      ( K u, K v )
@@ -139,10 +139,10 @@ void        Graph<D,K>::print_path      ( K u, K v )
 //============================================
 // print_path_r
 // description: 
-// PARAMETERS:
-// RETURN:
-// pre-conditions:
-// pos-conditions:
+// PARAMETERS: verticies s and v
+// RETURN: void
+// pre-conditions: bfs
+// pos-conditions: prints the path in the terminal
 //============================================
 template <typename D, typename K>
 void        Graph<D,K>::print_path_r        ( vertex* s, vertex* v )
@@ -160,11 +160,11 @@ void        Graph<D,K>::print_path_r        ( vertex* s, vertex* v )
 
 //============================================
 // edge_class
-// description: 
-// PARAMETERS:
-// RETURN:
-// pre-conditions:
-// pos-conditions:
+// description: determines the type of edge between u and v
+// PARAMETERS: keys u and v
+// RETURN: string- type of edge
+// pre-conditions: dfs
+// pos-conditions: none
 //============================================
 template <typename D, typename K>
 string        Graph<D,K>::edge_class      ( K u, K v )
@@ -189,11 +189,11 @@ string        Graph<D,K>::edge_class      ( K u, K v )
 
 //============================================
 // bfs_tree
-// description: 
-// PARAMETERS:
-// RETURN:
-// pre-conditions:
-// pos-conditions:
+// description: prints out the bfs tree of a graph
+// PARAMETERS: start key
+// RETURN: void
+// pre-conditions: bfs
+// pos-conditions: prints the tree in the terminal
 //============================================
 template <typename D, typename K>
 void        Graph<D,K>::bfs_tree        ( K start_key )
@@ -235,11 +235,11 @@ void        Graph<D,K>::bfs_tree        ( K start_key )
 
 //============================================
 // dfs
-// description: 
-// PARAMETERS:
-// RETURN:
-// pre-conditions:
-// pos-conditions:
+// description: searches all adjacent verticies before backtracking and discovering from predecessor
+// PARAMETERS: void
+// RETURN: void
+// pre-conditions: none
+// pos-conditions: forest built implicitly by predecessors
 //============================================
 template <typename D, typename K>
 void        Graph<D,K>::dfs         ( void )
@@ -269,11 +269,11 @@ void        Graph<D,K>::dfs         ( void )
 
 //============================================
 // dfs_visit
-// description: 
-// PARAMETERS:
-// RETURN:
-// pre-conditions:
-// pos-conditions:
+// description: discovers the adgacent verticies recursively
+// PARAMETERS: vertex u and time
+// RETURN: int - time
+// pre-conditions: vertex is white
+// pos-conditions: discovers all reachable verticies
 //============================================
 template <typename D, typename K>
 int        Graph<D,K>::dfs_visit           ( vertex* u, int time )
