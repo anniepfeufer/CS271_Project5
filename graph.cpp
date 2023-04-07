@@ -216,9 +216,9 @@ string        Graph<D,K>::edge_class      ( K u, K v )
         {
             if (b->pred==a)
                 return "tree edge";
-            else if ( (a->d > b->d) && (b->f > a->f) )
+            else if ( (a->d < b->d) && (b->f < a->f) )
                 return "forward edge";
-            else if ( (a->d < b->d) && (b->f < a->f) )    
+            else if ( (a->d > b->d) && (b->f > a->f) )    
                 return "back edge";
             else 
                 return "cross edge";
