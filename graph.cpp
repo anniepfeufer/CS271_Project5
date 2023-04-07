@@ -211,17 +211,18 @@ string        Graph<D,K>::edge_class      ( K u, K v )
     dfs();
     vertex* a=get(u);
     vertex* b=get(v);
-    if (Adj[a->index][v]!=NULL){
-        //not sure if this is right way, want to check that there IS an existing edge
-        if (b->pred==a)
-            return "tree edge";
-        else if ( (a->d > b->d) && (b->f > a->f) )
-            return "forward edge";
-        else if ( (a->d < b->d) && (b->f < a->f) )    
-            return "back edge";
-        else 
-            return "cross edge";
-    }
+    for ( int i = 0; i < Adj[a->index].size(); i++ )
+        if ( Adj[a->index][i]->key == v )
+        {
+            if (b->pred==a)
+                return "tree edge";
+            else if ( (a->d > b->d) && (b->f > a->f) )
+                return "forward edge";
+            else if ( (a->d < b->d) && (b->f < a->f) )    
+                return "back edge";
+            else 
+                return "cross edge";
+        }
     return "no edge";
 }
 
