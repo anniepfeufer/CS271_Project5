@@ -7,7 +7,7 @@
 
 #include <fstream>
 #include <sstream>
-#include "graph.h"
+#include "graph.cpp"
 
 Graph<string, string>* generate_graph(string fname){
     string line;
@@ -142,12 +142,12 @@ void test_bfs_tree(Graph<string,string>* G) {
 int main() {
 
     Graph<string,string>* G = generate_graph("graph_description.txt");
-    test_get(G);
-    test_reachable(G);
-    test_bfs(G);
-    test_print_path(G);
-    test_edge_class(G);
-    test_bfs_tree(G);
+    test_get(G); cout << "Testing get" << endl;
+    test_reachable(G);cout << "Testing reach" << endl;
+    test_bfs(G);cout << "Testing bfs" << endl;
+    test_print_path(G);cout << "Testing print path" << endl;
+    test_edge_class(G);cout << "Testing edge class" << endl;
+    test_bfs_tree(G);cout << "Testing bfs tree" << endl;
 
     cout << "Testing completed" << endl;
 
